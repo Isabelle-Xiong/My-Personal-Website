@@ -53,6 +53,10 @@ section {
     z-index: 100;
 }
 
+.header.sticky {
+    border-bottom: .1rem solid rgba(0, 0, 0, .2);
+}
+
 .logo {
     font-size: 2.5rem;
     color: var(--text-color);
@@ -93,6 +97,22 @@ Percentage: The value 60vw means that the width of the element will be 60% of th
     width: 40vw;
     margin-left: 40px;
     float: right;
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+/* Defines how it floats up and down */
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2.5rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
 
 /* In the CSS rule font-size: 3.2rem;, the 3.2rem value sets the font size to 3.2 times the font size of the root element.*/
@@ -161,6 +181,34 @@ span {
     box-shadow: none;
 }
 
+.phone-icon {
+    position: relative;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    display: inline-block;
+    /* Display horizontally */
+}
+
+.phone-icon:hover .tooltip {
+    visibility: visible;
+}
+
 .about {
     display: flex;
     justify-content: center;
@@ -192,9 +240,14 @@ Percentage: The value 60vw means that the width of the element will be 60% of th
 }
 
 .about-content p {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     margin: 2rem 0 3rem;
 }
+
+.about-content p strong {
+    font-size: 1.6rem;
+}
+
 
 .services h2 {
     margin-bottom: 5rem;
@@ -404,4 +457,151 @@ Percentage: The value 60vw means that the width of the element will be 60% of th
 .footer-iconTop a:hover {
     box-shadow: 0 0 1rem var(--main-color);
 
+}
+
+/* Breakpoints, Breakpoints are specific screen widths where the layout of the webpage changes to accommodate different screen sizes.*/
+
+/* applies styles when the viewport width is at most 1200 pixels wide */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 3%;
+    }
+
+    section {
+        padding: 10rem 3% 2rem;
+    }
+
+    .services {
+        padding-bottom: 7rem;
+    }
+
+    .portfolio {
+        padding-bottom: 7rem;
+    }
+
+    .contact {
+        min-height: auto;
+    }
+
+    .footer {
+        padding: 2rem 3%;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    /* Add menu for navbar when the viewport width is at most 768 pixels wide */
+    #menu-icon {
+        display: block;
+    }
+
+    /* Push navbar to bottom when the viewport width is at most 768 pixels wide */
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        display: none;
+    }
+
+    /* when navbar active class is present */
+    .navbar.active {
+        display: block;
+    }
+
+    /* Stacks the tabs inside navbar when viewport width is at most 768 px because display: block. display: block;: This property sets the display type of the <a> elements to block. Block-level elements start on a new line and take up the full width available.  */
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+
+    .home {
+        /* apply flex-direction: column; to the container, causing its flex items to be stacked vertically within it. Makes the image stack with other stuff instead of displaying to side */
+        flex-direction: column;
+    }
+
+    .home-content h3 {
+        font-size: 2.6rem;
+    }
+
+    .home-content h1 {
+        font-size: 5rem;
+    }
+
+    .home-img img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+
+    .about {
+        /* bottom to top stacking */
+        flex-direction: column-reverse;
+    }
+
+    .about img {
+        width: 70vw;
+        margin-top: 4rem;
+    }
+
+    .services h2 {
+        margin-bottom: 3rem;
+    }
+
+    .portfolio h2 {
+        margin-bottom: 3rem;
+    }
+
+    .portfolio-container {
+        /* each column should take up an equal portion of the available space, defined by 1fr */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 617px) {
+    .portfolio-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .contact form .input-box input {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 365px) {
+    .home-img img {
+        width: 90vw;
+    }
+
+    .about-img img {
+        width: 90vw;
+    }
+
+    .footer {
+        flex-direction: column-reverse;
+        ;
+    }
+
+    .footer p {
+        text-align: center;
+        margin-top: 2rem;
+    }
 }
